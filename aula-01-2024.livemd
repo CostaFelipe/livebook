@@ -30,3 +30,61 @@ Tipos básicos:
 * Átomos
 
 ## Operadores
+
+```elixir
+10/3
+```
+
+```elixir
+10 - 3
+```
+
+```elixir
+10 + 3 * 10
+```
+
+```elixir
+10 + 11
+```
+
+```elixir
+20 * 2
+```
+
+```elixir
+"AFRICA " <> "DO " <> "SUL"
+```
+
+## Funções
+
+```elixir
+String.upcase("brasil")
+```
+
+```elixir
+"BRASIL" == String.upcase("brasil")
+```
+
+```elixir
+String.capitalize("brasil")
+```
+
+```elixir
+String.at("Brasil", 2)
+```
+
+## Criar suas próprias funções
+
+```elixir
+defmodule Urna do
+  def vota(nome_pessoa_candidata) do
+    "Você votou em #{nome_pessoa_candidata}!"
+  end
+end
+```
+
+```elixir
+Urna.vota("José Valim")
+
+Urna.vota("Joe Armstrong")
+```
