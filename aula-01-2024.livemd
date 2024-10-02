@@ -1,0 +1,32 @@
+# 01/10/2024
+
+## Tipos Básicos
+
+```elixir
+  1340
+```
+
+```elixir
+"Felipe Costa"
+```
+
+```elixir
+3.36666666
+```
+
+```elixir
+10 / 3
+```
+
+```elixir
+:age
+```
+
+Tipos básicos:
+
+* Números inteiros
+* Strings
+* Números de ponto flutuante
+* Átomos
+
+## Operadores
