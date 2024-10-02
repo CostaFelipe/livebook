@@ -29,6 +29,28 @@ Tipos básicos:
 * Números de ponto flutuante
 * Átomos
 
+## Tipos complexos
+
+```elixir
+[]
+```
+
+```elixir
+[1, 2, 3, 4, 5]
+```
+
+```elixir
+["elixir", :atom, 1, 2, 2.5]
+```
+
+```elixir
+{1, "José Valim"}
+```
+
+```elixir
+{2.7, "teste", []}
+```
+
 ## Operadores
 
 ```elixir
@@ -80,6 +102,14 @@ defmodule Urna do
   def vota(nome_pessoa_candidata) do
     "Você votou em #{nome_pessoa_candidata}!"
   end
+
+  def vota(numero, nome) do
+    "Você votou em #{numero} - #{nome}!"
+  end
+
+  def vota(urna, numero, nome) do
+    [{numero, nome} | urna] 
+  end
 end
 ```
 
@@ -87,4 +117,29 @@ end
 Urna.vota("José Valim")
 
 Urna.vota("Joe Armstrong")
+```
+
+```elixir
+Urna.vota(26, "Robert Virding")
+```
+
+```elixir
+urna = []
+
+urna = Urna.vota(urna, 1, "José Valim")
+urna = Urna.vota(urna, 2, "Robert Virding")
+urna = Urna.vota(urna, 2, "Robert Virding")
+urna = Urna.vota(urna, 3, "Joe Armstrong")
+urna = Urna.vota(urna, 1, "José Valim")
+urna = Urna.vota(urna, 4, "Mike Williams")
+```
+
+```elixir
+[]
+ |> Urna.vota(1, "José Valim")
+ |> Urna.vota(2, "Robert Virding")
+ |> Urna.vota(2, "Robert Virding")
+ |> Urna.vota(3, "Joe Armstrong")
+ |> Urna.vota(1, "José Valim")
+ |> Urna.vota(4, "Mike Williams")
 ```
