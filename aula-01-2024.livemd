@@ -110,6 +110,11 @@ defmodule Urna do
   def vota(urna, numero, nome) do
     [{numero, nome} | urna] 
   end
+
+  def mostra_vencedor(urna) do
+    urna
+    |> Enum.map(fn {_numero, pessoa} -> pessoa end)
+  end
 end
 ```
 
@@ -142,4 +147,46 @@ urna = Urna.vota(urna, 4, "Mike Williams")
  |> Urna.vota(3, "Joe Armstrong")
  |> Urna.vota(1, "José Valim")
  |> Urna.vota(4, "Mike Williams")
+```
+
+```elixir
+[]
+ |> Urna.vota(1, "José Valim")
+ |> Urna.vota(2, "Robert Virding")
+ |> Urna.vota(2, "Robert Virding")
+ |> Urna.vota(3, "Joe Armstrong")
+ |> Urna.vota(1, "José Valim")
+ |> Urna.vota(4, "Mike Williams")
+ |> Urna.vota(1, "José Valim")
+ |> dbg()
+```
+
+## Calculando quem ganhou (Depois que a eleição termina)
+
+```elixir
+[]
+ |> Urna.vota(1, "José Valim")
+ |> Urna.vota(2, "Robert Virding")
+ |> Urna.vota(2, "Robert Virding")
+ |> Urna.vota(3, "Joe Armstrong")
+ |> Urna.vota(1, "José Valim")
+ |> Urna.vota(4, "Mike Williams")
+ |> Urna.vota(1, "José Valim")
+ |> Urna.mostra_vencedor()
+```
+
+## Funções do Módulo Enum
+
+```elixir
+defmodule Math do
+  def double(x) do
+    x * 2
+  end
+end
+
+Enum.map([10, 4, 3], &Math.double/1)
+
+Enum.map([10, 5, 7], fn x -> x * 2 end)
+
+Enum.map([1, 2, 3], &(&1 * 2))
 ```
