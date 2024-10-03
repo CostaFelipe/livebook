@@ -51,6 +51,19 @@ Tipos básicos:
 {2.7, "teste", []}
 ```
 
+```elixir
+%{"Felipe" => 10, "Costa" => 5}
+```
+
+```elixir
+Map.keys(%{"Felipe" => 10, "Costa" => 5})
+
+```
+
+```elixir
+Map.values(%{"Felipe" => 10, "Costa" => 5})
+```
+
 ## Operadores
 
 ```elixir
@@ -111,9 +124,16 @@ defmodule Urna do
     [{numero, nome} | urna] 
   end
 
-  def mostra_vencedor(urna) do
+  def resultado(urna) do
     urna
     |> Enum.map(fn {_numero, pessoa} -> pessoa end)
+    |> Enum.frequencies()
+    |> Map.to_list()
+  end
+
+  def mostra_vencedor(lista) do
+    {nome_do_vencedor, votos} = Enum.max_by(lista, fn {_nome, votos} -> votos end)
+    "A pessoa vencedora da eleição foi #{nome_do_vencedor} com #{votos} votos"
   end
 end
 ```
@@ -172,7 +192,10 @@ urna = Urna.vota(urna, 4, "Mike Williams")
  |> Urna.vota(1, "José Valim")
  |> Urna.vota(4, "Mike Williams")
  |> Urna.vota(1, "José Valim")
+ |> Urna.vota(1, "José Valim")
+ |> Urna.resultado()
  |> Urna.mostra_vencedor()
+ |> dbg()
 ```
 
 ## Funções do Módulo Enum
