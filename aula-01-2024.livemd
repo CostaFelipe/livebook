@@ -297,3 +297,93 @@ nome_do_maria
 ```elixir
 is_map(joao)
 ```
+
+## O campo especial __Struct__:
+
+```elixir
+joao.__struct__
+```
+
+```elixir
+jane = Map.put(%Pessoa{}, :nome, "Jane")
+```
+
+```elixir
+Map.merge(jane, %Pessoa{nome: "John"})
+```
+
+```elixir
+Map.keys(jane)
+```
+
+## Valores padrões
+
+```elixir
+defmodule Produto do
+  defstruct [:nome]
+end
+```
+
+```elixir
+%Produto{}
+```
+
+## Você pode combinar valores padrão explícito com valor 'nil' implícito
+
+```elixir
+defmodule Usuario do
+  defstruct [:email, nome: "João", idade: 23]
+end
+```
+
+```elixir
+%Usuario{}
+```
+
+## Definindo chaves obrigatórias
+
+```elixir
+defmodule Car do
+  @enforce_keys [:make]
+  defstruct [:model, :make]
+end
+```
+
+```elixir
+%Car{}
+```
+
+```elixir
+%Car{make: "toyota"}
+```
+
+```elixir
+%Car{make: "toyota", model: "HILUX"}
+```
+
+## Construtores, Redutores e Conversores
+
+```elixir
+defmodule JogoDaVelha do
+  defstruct [:tabuleiro, :jogadores, :jogador_da_vez, :vencedor]
+
+  def new(jogador1, jogador2) do
+    %__MODULE__{
+      tabuleiro: ["", "", "", "", "", "", "", "", ""],
+      jogadores: [jogador1, jogador2],
+      jogador_da_vez: jogador1
+    }
+  end
+
+  def joga(jogo, simbolo, x, y) do
+    novo_tabuleiro = List.insert_at(jogo.tabuleiro, x - 1 + (y - 1) * 3, simbolo)
+    [novo_jogador_da_vez] = jogo.jogadores -- [jogo.jogador_da_vez]
+    %{jogo | tabuleiro: novo_tabuleiro, jogador_da_vez: novo_jogador_da_vez}
+  end
+
+  def jogador_da_vez(jogo) do
+    jogo.jogador_da_vez
+  end
+  
+end
+```
