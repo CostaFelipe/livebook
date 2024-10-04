@@ -213,3 +213,87 @@ Enum.map([10, 5, 7], fn x -> x * 2 end)
 
 Enum.map([1, 2, 3], &(&1 * 2))
 ```
+
+## Structs
+
+```elixir
+map = %{a: 1, b: 2}
+```
+
+```elixir
+map[:a]
+```
+
+```elixir
+map2 = %{map | b: 5}
+```
+
+```elixir
+map
+```
+
+```elixir
+map2
+```
+
+Exemplo de Struct Pessoa.
+
+```elixir
+defmodule Pessoa do
+  defstruct nome: "Henrique", idade: 25
+end
+```
+
+```elixir
+%Pessoa{}
+```
+
+```elixir
+%Pessoa{nome: "João"}
+```
+
+```elixir
+%Pessoa{peso: 100}
+```
+
+## Atribuindo uma Struct a uma variável
+
+```elixir
+joao = %Pessoa{nome: "João"}
+```
+
+## Acessando um campo de uma struct
+
+```elixir
+joao.nome
+```
+
+```elixir
+joao.idade
+```
+
+## "Modificando" uma struct com |
+
+```elixir
+maria = %{joao | nome: "Maria"}
+```
+
+```elixir
+maria = %{joao | peso: 45}
+```
+
+## Uso de Structs no casamento de padrões
+
+```elixir
+%Pessoa{nome: nome_do_maria} = maria
+```
+
+```elixir
+nome_do_maria
+```
+
+## Structs são bare maps (mapas simples)
+
+```elixir
+is_map(joao)
+```
