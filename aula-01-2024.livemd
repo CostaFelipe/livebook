@@ -306,6 +306,93 @@ lista = [[1, 2], [3, 4], [5, 6]]
 Enum.zip_with(lista, fn [x, y, z] -> x + y + z end)
 ```
 
+```elixir
+lista = [1, 2, 3, 4, 5, 6]
+```
+
+```elixir
+Enum.chunk_every(lista, 2)
+```
+
+```elixir
+lista = [1, 2, 3, 4, 5]
+```
+
+```elixir
+Enum.sum(lista)
+```
+
+```elixir
+lista = [1, 2, 3, 4]
+```
+
+```elixir
+Enum.reduce(lista, 1, fn x, produto -> x * produto end)
+```
+
+```elixir
+lista = [10, 20, 30, 40]
+```
+
+```elixir
+defmodule CalcularMedia do
+  def calcular_media(lista) do
+    soma = Enum.sum(lista)
+    contagem = Enum.count(lista)
+
+    if contagem > 0 do
+      soma / contagem
+    else
+      0
+    end
+  end
+end
+```
+
+```elixir
+media = CalcularMedia.calcular_media(lista)
+IO.puts(media)
+```
+
+```elixir
+lista  = [1, 2, 3, 4]
+```
+
+```elixir
+Enum.all?(lista, fn x -> x > 0 end)
+```
+
+```elixir
+lista1 = [1, 2, 3] 
+lista2 = [4, 5, 6]
+```
+
+```elixir
+Enum.concat(lista1, lista2)
+```
+
+```elixir
+lista = ["a", "b", "c", "d"]
+```
+
+```elixir
+Enum.each(lista, fn x -> IO.puts(x) end)
+```
+
+```elixir
+lista = ["hello", "world"]
+```
+
+```elixir
+  Enum.reduce(lista, "", fn elemento, conc -> 
+    if conc == "" do
+       elemento
+    else
+       conc <> " " <> elemento
+    end
+  end)
+```
+
 ## Structs
 
 ```elixir
