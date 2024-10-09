@@ -393,6 +393,64 @@ lista = ["hello", "world"]
   end)
 ```
 
+```elixir
+lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
+```elixir
+Enum.filter(lista, fn x -> rem(x, 3) == 0 end)
+```
+
+```elixir
+lista = [:apple, :banana, :apple, :orange, :banana, :banana]
+```
+
+```elixir
+Enum.frequencies(lista)
+```
+
+```elixir
+lista = ["apple", "banana", "cherry", "date", "fig"]
+```
+
+```elixir
+Enum.filter(lista, fn x -> String.length(x) > 4 end)
+```
+
+```elixir
+lista = [1, 2, 3, 4, 5]
+```
+
+```elixir
+Enum.map(lista, fn x -> x * 2 end)
+```
+
+```elixir
+lista = [7, 3, 1, 5, 9]
+```
+
+```elixir
+Enum.min(lista)
+```
+
+```elixir
+lista = [12, 4, 18, 7, 5]
+```
+
+```elixir
+Enum.max(lista)
+```
+
+```elixir
+lista = ["cat", "dog", "elephant", "tiger", "one"]
+```
+
+```elixir
+Enum.count(lista, fn x -> 
+  String.length(x) < 5
+  end)
+```
+
 ## Structs
 
 ```elixir
