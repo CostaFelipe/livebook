@@ -722,6 +722,15 @@ defmodule Estudante do
     Enum.filter(estudantes, fn estudante -> estudante.matricula != matricula end)
   end
 
+  def update_estudante(estudantes, matricula, novos_dados) do
+    Enum.map(estudantes, fn estudante 
+      when estudante.matricula == matricula ->
+      Map.merge(estudante, novos_dados)
+    estudante -> 
+      estudante
+      end)    
+  end
+
   def imprimir_estudantes_cadastrados(estudantes) do
     Enum.map(estudantes, fn estudante -> estudante.nome end)
   end
@@ -755,4 +764,16 @@ estudantes = Estudante.delete_estudante(estudantes, 12352)
 
 ```elixir
 Estudante.imprimir_estudantes_cadastrados(estudantes)
+```
+
+```elixir
+novos_dados = %{idade: 21, curso: "Engenharia de Software"}
+```
+
+```elixir
+estudantes = Estudante.update_estudante(estudantes, 11111, novos_dados)
+```
+
+```elixir
+IO.inspect(estudantes)
 ```
