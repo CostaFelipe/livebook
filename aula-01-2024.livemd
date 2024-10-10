@@ -451,6 +451,76 @@ Enum.count(lista, fn x ->
   end)
 ```
 
+```elixir
+lista = [2, 4, 6, 8, 10]
+```
+
+```elixir
+Enum.any?(lista, fn x -> rem(x, 2) == 0 end)
+```
+
+```elixir
+ lista = ["apple", "pear", "fig", "banana"]
+```
+
+```elixir
+Enum.group_by(lista, fn x -> String.length(x) end)
+```
+
+```elixir
+tuplas = [{1, "one"}, {2, "two"}, {3, "three"}]
+```
+
+```elixir
+Enum.map(tuplas, fn x -> 
+  x
+    |> Tuple.to_list()
+    |> Enum.join(" - ")
+  end)
+```
+
+```elixir
+lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
+```elixir
+lista 
+   |> Enum.filter(fn x -> rem(x, 2) == 1 end)
+   |> Enum.sum() 
+```
+
+```elixir
+lista = ["Hello", "World", "From", "Elixir"]
+```
+
+```elixir
+Enum.join(lista, " ")
+```
+
+```elixir
+lista = [1, 2, 3, 1, 2, 4, 5]
+```
+
+```elixir
+Enum.uniq(lista)
+```
+
+```elixir
+lista = ["a", "b", "a", "c", "b", "a"]
+```
+
+```elixir
+Enum.frequencies(lista)
+```
+
+```elixir
+lista = ["apple", "banana", "kiwi", "grape"]
+```
+
+```elixir
+Enum.filter(lista, fn word -> String.length(word) == 5 end)
+```
+
 ## Structs
 
 ```elixir
