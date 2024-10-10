@@ -694,3 +694,65 @@ defmodule JogoDaVelha do
   
 end
 ```
+
+## Structs
+
+<!-- livebook:{"reevaluate_automatically":true} -->
+
+```elixir
+defmodule Estudante do
+  
+  defstruct [:id, :nome, :idade, :matricula, :curso]
+
+  def new(nome, idade, matricula, curso) do
+    %Estudante{
+      id: :erlang.unique_integer([:positive]),
+      nome: nome,
+      idade: idade,
+      matricula: matricula,
+      curso: curso
+    }
+  end
+
+  def add_estudante(estudantes, estudante) do
+    [estudante | estudantes]
+  end
+
+  def delete_estudante(estudantes, matricula) do
+    Enum.filter(estudantes, fn estudante -> estudante.matricula != matricula end)
+  end
+
+  def imprimir_estudantes_cadastrados(estudantes) do
+    Enum.map(estudantes, fn estudante -> estudante.nome end)
+  end
+end
+```
+
+```elixir
+estudantes = []
+```
+
+```elixir
+estudante1 = Estudante.new("Marcus", 27, 11111, "Direito")
+```
+
+```elixir
+estudante2 = Estudante.new("Sarah", 25, 12352, "Direito")
+```
+
+```elixir
+estudantes = Estudante.add_estudante(estudantes, estudante1)
+estudantes = Estudante.add_estudante(estudantes, estudante2)
+```
+
+```elixir
+IO.inspect(estudantes, label: "Estudantes cadastrados")
+```
+
+```elixir
+estudantes = Estudante.delete_estudante(estudantes, 12352)
+```
+
+```elixir
+Estudante.imprimir_estudantes_cadastrados(estudantes)
+```
