@@ -734,6 +734,10 @@ defmodule Estudante do
   def imprimir_estudantes_cadastrados(estudantes) do
     Enum.map(estudantes, fn estudante -> estudante.nome end)
   end
+
+  def listar_estudantes_por_curso(estudantes, curso) do
+    Enum.filter(estudantes, fn estudante -> estudante.curso == curso end)
+  end
 end
 ```
 
@@ -742,11 +746,11 @@ estudantes = []
 ```
 
 ```elixir
-estudante1 = Estudante.new("Marcus", 27, 11111, "Direito")
+estudante1 = Estudante.new("Marcus", 27, 11111, "Engenharia de software")
 ```
 
 ```elixir
-estudante2 = Estudante.new("Sarah", 25, 12352, "Direito")
+estudante2 = Estudante.new("Sarah", 25, 12352, "Engenharia de software")
 ```
 
 ```elixir
@@ -767,13 +771,13 @@ Estudante.imprimir_estudantes_cadastrados(estudantes)
 ```
 
 ```elixir
-novos_dados = %{idade: 21, curso: "Engenharia de Software"}
-```
-
-```elixir
-estudantes = Estudante.update_estudante(estudantes, 11111, novos_dados)
-```
-
-```elixir
 IO.inspect(estudantes)
+```
+
+```elixir
+estudantes = Estudante.add_estudante(estudantes, estudante2)
+```
+
+```elixir
+Estudante.listar_estudantes_por_curso(estudantes, "Engenharia de software")
 ```
