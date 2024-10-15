@@ -521,6 +521,20 @@ lista = ["apple", "banana", "kiwi", "grape"]
 Enum.filter(lista, fn word -> String.length(word) == 5 end)
 ```
 
+```elixir
+lista = [1, 2, 3, 4, 5]
+```
+
+```elixir
+Enum.map(lista, fn x ->
+  if rem(x, 2) == 1 do
+    x * 2
+  else
+    nil
+  end
+  end) |> Enum.filter(& &1)
+```
+
 ## Structs
 
 ```elixir
