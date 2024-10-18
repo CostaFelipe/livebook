@@ -719,13 +719,19 @@ defmodule Estudante do
   defstruct [:id, :nome, :idade, :matricula, :curso]
 
   def new(nome, idade, matricula, curso) do
-    %Estudante{
-      id: :erlang.unique_integer([:positive]),
-      nome: nome,
-      idade: idade,
-      matricula: matricula,
-      curso: curso
-    }
+    case verificar_idade(idade) do
+      {:ok, idade} -> 
+        %Estudante{
+            id: :erlang.unique_integer([:positive]),
+           nome: nome,
+           idade: idade,
+            matricula: matricula,
+           curso: curso
+        }
+      {:error, _} -> "idade menor"
+      _ -> "não tem idade"
+    end
+    
   end
 
   def add_estudante(estudantes, estudante) do
@@ -752,6 +758,14 @@ defmodule Estudante do
   def listar_estudantes_por_curso(estudantes, curso) do
     Enum.filter(estudantes, fn estudante -> estudante.curso == curso end)
   end
+
+  defp verificar_idade(idade) do
+    if idade > 18 do
+      {:ok, idade}
+    else
+      {:error, "digite uma idade maior que 18"}
+    end
+  end
 end
 ```
 
@@ -760,7 +774,7 @@ estudantes = []
 ```
 
 ```elixir
-estudante1 = Estudante.new("Marcus", 27, 11111, "Engenharia de software")
+estudante1 = Estudante.new("Marcus", 19, 11111, "Engenharia de software")
 ```
 
 ```elixir
