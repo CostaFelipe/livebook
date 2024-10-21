@@ -5,9 +5,9 @@
 ```elixir
 defmodule People do
   defstruct first_name: nil,
-    last_name: nil, 
-    birthday: nil,
-    location: "home"
+            last_name: nil, 
+            birthday: nil,
+            location: "home"
 
   def full_name(%__MODULE__{} = person) do
     "#{person.first_name} #{person.last_name}"
@@ -17,12 +17,20 @@ defmodule People do
     days = Date.diff(Date.utc_today(), person.birthday)
     days / 365.25
   end
+
+  def toggle_location(%__MODULE__{location: "away"} = person) do
+    person |> set_location("home")
+  end
+
+  defp set_location(%__MODULE__{} = person, location) do
+    %{person | location: location}
+  end
   
 end
 ```
 
 ```elixir
-person = %People{first_name: "Bruce", last_name: "Wayne", birthday: ~D[2000-01-01]}
+person = %People{first_name: "Bruce", last_name: "Wayne", birthday: ~D[2000-01-01], location: "away"}
 ```
 
 ```elixir
@@ -31,4 +39,8 @@ People.full_name(person)
 
 ```elixir
 People.age(person)
+```
+
+```elixir
+People.toggle_location(person)
 ```
