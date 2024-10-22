@@ -62,6 +62,22 @@ defmodule TodoList do
     new_todo = %Todo{id: id, title: title}
     [new_todo | todos]
   end
+
+  def list_todos(todos) do
+    Enum.each(todos, fn todo -> 
+      IO.puts("ID: #{todo.id} - #{todo.title} [#{if todo.completed, do: "X", else: " "}]")
+      end)
+  end
+
+  def completed_todo(todos, id) do
+    Enum.map(todos, fn todo -> 
+      if todo.id == id do
+        %{todo | completed: true}
+      else
+        todo
+      end
+      end)
+  end
 end
 ```
 
@@ -73,4 +89,16 @@ todos = TodoList.start()
 todos = TodoList.add_todo(todos, "Estudar elixir")
 todos = TodoList.add_todo(todos, "Escrever artigo")
 todos = TodoList.add_todo(todos, "Fazer exercício")
+```
+
+```elixir
+TodoList.list_todos(todos)
+```
+
+```elixir
+todos = TodoList.completed_todo(todos, 1)
+```
+
+```elixir
+TodoList.list_todos(todos)
 ```
