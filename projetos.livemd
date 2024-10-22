@@ -1,4 +1,4 @@
-# Untitled notebook
+# treinando structs
 
 ## Section
 
@@ -43,4 +43,34 @@ People.age(person)
 
 ```elixir
 People.toggle_location(person)
+```
+
+```elixir
+defmodule Todo do
+  defstruct id: nil, title: "", completed: false
+end
+```
+
+```elixir
+defmodule TodoList do
+  def start do
+    []
+  end
+
+  def add_todo(todos, title) do
+    id = Enum.count(todos) + 1
+    new_todo = %Todo{id: id, title: title}
+    [new_todo | todos]
+  end
+end
+```
+
+```elixir
+todos = TodoList.start()
+```
+
+```elixir
+todos = TodoList.add_todo(todos, "Estudar elixir")
+todos = TodoList.add_todo(todos, "Escrever artigo")
+todos = TodoList.add_todo(todos, "Fazer exercício")
 ```
