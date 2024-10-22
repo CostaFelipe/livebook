@@ -78,6 +78,10 @@ defmodule TodoList do
       end
       end)
   end
+
+  def remove_todo(todos, id) do
+    Enum.reject(todos, fn todo -> todo.id == id end)
+  end
 end
 ```
 
