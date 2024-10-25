@@ -114,3 +114,64 @@ todos = TodoList.remove_todo(todos, 1)
 ```elixir
 TodoList.list_todos(todos)
 ```
+
+```elixir
+defmodule Produto do
+  defstruct nome: nil, valor: 1.99
+end
+```
+
+```elixir
+sabone = %Produto{nome: "Dove"}
+```
+
+```elixir
+shampoo = %Produto{nome: "Nivia", valor: 5.50}
+```
+
+## Documentação
+
+```elixir
+defmodule Student do
+  @moduledoc """
+    Define a Student struct and functions to handle a student
+  """
+  defstruct name: nil, results: []
+
+  @doc """
+    * Get the first name of a Student.
+    * joao = %Student{name: "João Joaquim"}
+    * Student.first_name(joao)
+    * "João"
+  """
+  def first_name(student) do
+    student.name
+    |> String.split
+    |> List.first
+  end
+
+  @doc """
+    * Get the last name of a Student.
+    * joao = %Student{name: "João Joaquim"}
+    * Student.last_name(joao)
+    * "Joaquim"
+  """
+  def last_name(student) do
+    student.name
+    |> String.split
+    |> List.last
+  end
+end
+```
+
+```elixir
+carlos = %Student{name: "Carlos Joaquim"}
+```
+
+```elixir
+Student.first_name carlos
+```
+
+```elixir
+Student.last_name carlos
+```
