@@ -52,6 +52,10 @@ end
 ```
 
 ```elixir
+ExUnit.start()
+```
+
+```elixir
 defmodule TodoList do
   def start do
     []
@@ -83,6 +87,22 @@ defmodule TodoList do
     Enum.reject(todos, fn todo -> todo.id == id end)
   end
 end
+```
+
+```elixir
+defmodule TodoTest do
+  use ExUnit.Case
+  
+  test "Given title, when add todo, then return a new todo list" do
+    todos = TodoList.start()
+    todos = TodoList.add_todo(todos, "Jonh doe")
+    assert length(todos) == 1
+  end
+end
+```
+
+```elixir
+ExUnit.run()
 ```
 
 ```elixir
