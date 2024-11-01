@@ -4,10 +4,21 @@
 
 ```elixir
 defmodule People do
-  defstruct first_name: nil,
+  defstruct id: nil,
+            first_name: nil,
             last_name: nil, 
             birthday: nil,
             location: "home"
+
+  def new(first_name, last_name, birthday, location \\ "home") do
+    %People{
+      id: :erlang.unique_integer([:positive]),
+      first_name: first_name,
+      last_name: last_name,
+      birthday: birthday,
+      location: location
+    }
+  end
 
   def full_name(%__MODULE__{} = person) do
     "#{person.first_name} #{person.last_name}"
@@ -34,11 +45,15 @@ person = %People{first_name: "Bruce", last_name: "Wayne", birthday: ~D[2000-01-0
 ```
 
 ```elixir
-People.full_name(person)
+people = People.new("Test", "testing", ~D[2000-01-01])
 ```
 
 ```elixir
-People.age(person)
+People.full_name(people)
+```
+
+```elixir
+People.age(people)
 ```
 
 ```elixir
