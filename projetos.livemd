@@ -8,7 +8,8 @@ defmodule People do
             first_name: nil,
             last_name: nil, 
             birthday: nil,
-            location: "home"
+            location: "home",
+            date_created: nil
 
   def new(first_name, last_name, birthday, location \\ "home") do
     %People{
@@ -16,6 +17,7 @@ defmodule People do
       first_name: first_name,
       last_name: last_name,
       birthday: birthday,
+      date_created: DateTime.utc_now(),
       location: location
     }
   end
@@ -62,7 +64,7 @@ People.toggle_location(person)
 
 ```elixir
 defmodule Todo do
-  defstruct id: nil, title: "", completed: false
+  defstruct id: nil, title: "", completed: false, date_created: DateTime.utc_now()  
 end
 ```
 
