@@ -64,7 +64,7 @@ People.toggle_location(person)
 
 ```elixir
 defmodule Todo do
-  defstruct id: nil, title: "", completed: false, date_created: DateTime.utc_now()  
+  defstruct id: nil, title: "", completed: false, date_created: DateTime.utc_now(), date_update: nil  
 end
 ```
 
@@ -93,7 +93,7 @@ defmodule TodoList do
   def completed_todo(todos, id) do
     Enum.map(todos, fn todo -> 
       if todo.id == id do
-        %{todo | completed: true}
+        %{todo | completed: true, date_update: DateTime.utc_now()}
       else
         todo
       end
