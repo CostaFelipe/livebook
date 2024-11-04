@@ -9,7 +9,7 @@ defmodule People do
             last_name: nil, 
             birthday: nil,
             location: "home",
-            date_created: nil
+            created_at: nil
 
   def new(first_name, last_name, birthday, location \\ "home") do
     %People{
@@ -17,7 +17,7 @@ defmodule People do
       first_name: first_name,
       last_name: last_name,
       birthday: birthday,
-      date_created: DateTime.utc_now(),
+      created_at: DateTime.utc_now(),
       location: location
     }
   end
@@ -43,10 +43,6 @@ end
 ```
 
 ```elixir
-person = %People{first_name: "Bruce", last_name: "Wayne", birthday: ~D[2000-01-01], location: "away"}
-```
-
-```elixir
 people = People.new("Test", "testing", ~D[2000-01-01])
 ```
 
@@ -59,12 +55,12 @@ People.age(people)
 ```
 
 ```elixir
-People.toggle_location(person)
+People.toggle_location(people)
 ```
 
 ```elixir
 defmodule Todo do
-  defstruct id: nil, title: "", completed: false, date_created: DateTime.utc_now(), date_update: nil  
+  defstruct id: nil, title: "", completed: false, created_at: DateTime.utc_now(), date_update: nil  
 end
 ```
 
@@ -79,14 +75,14 @@ defmodule TodoList do
   end
 
   def add_todo(todos, title) do
-    id = Enum.count(todos) + 1
-    new_todo = %Todo{id: id, title: title}
+    id = :erlang.unique_integer([:positive])
+    new_todo = %Todo{id: id, title: title, }
     [new_todo | todos]
   end
 
   def list_todos(todos) do
     Enum.each(todos, fn todo -> 
-      IO.puts("ID: #{todo.id} - #{todo.title} [#{if todo.completed, do: "X", else: " "}]")
+      IO.puts("ID: #{todo.id} - #{todo.title} [#{if todo.completed, do: "✅", else: " "}]")
       end)
   end
 
@@ -137,7 +133,7 @@ TodoList.list_todos(todos)
 ```
 
 ```elixir
-todos = TodoList.completed_todo(todos, 1)
+todos = TodoList.completed_todo(todos, 3650)
 ```
 
 ```elixir
