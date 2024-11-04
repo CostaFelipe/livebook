@@ -105,11 +105,12 @@ end
 ```elixir
 defmodule TodoTest do
   use ExUnit.Case
-  
-  test "Given title, when add todo, then return a new todo list" do
-    todos = TodoList.start()
-    todos = TodoList.add_todo(todos, "Jonh doe")
-    assert length(todos) == 1
+  describe "add_todo/2" do
+    test "Given title, when add todo, then return a new todo list" do
+      todos = TodoList.start()
+      todos = TodoList.add_todo(todos, "Jonh doe")
+      assert length(todos) == 1
+    end
   end
 end
 ```
