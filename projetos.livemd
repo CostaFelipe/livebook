@@ -114,7 +114,7 @@ TodoList.list_todos(todos)
 ```
 
 ```elixir
-todos = TodoList.completed_todo(todos, 3650)
+todos = TodoList.completed_todo(todos, 99)
 ```
 
 ```elixir
@@ -141,110 +141,4 @@ sabone = %Produto{nome: "Dove"}
 
 ```elixir
 shampoo = %Produto{nome: "Nivia", valor: 5.50}
-```
-
-## Documentação
-
-```elixir
-defmodule Student do
-  @moduledoc """
-    Define a Student struct and functions to handle a student
-  """
-  defstruct name: nil, results: []
-
-  @doc """
-    * Get the first name of a Student.
-    * joao = %Student{name: "João Joaquim"}
-    * Student.first_name(joao)
-    * "João"
-  """
-  def first_name(student) do
-    student.name
-    |> String.split
-    |> List.first
-  end
-
-  @doc """
-    * Get the last name of a Student.
-    * joao = %Student{name: "João Joaquim"}
-    * Student.last_name(joao)
-    * "Joaquim"
-  """
-  def last_name(student) do
-    student.name
-    |> String.split
-    |> List.last
-  end
-end
-```
-
-```elixir
-defmodule Subject do
-  defstruct name: nil, result: nil
-end
-```
-
-```elixir
-defmodule Calculator do
-  def start() do
-    joao = %Student{name: "João Joaquim", results: build_subjects([5.2, 3.9, 2.7, 9.8])}
-    maria = %Student{name: "Maria da Silva", results: build_subjects([8.4, 7.5, 9.4, 2.8])}
-    pedro = %Student{name: "Pedro Pedrada", results: build_subjects([1.3, 8.5, 8.9, 7.6])}
-    kaua = %Student{name: "Kauã Camboinhas", results: build_subjects([5.4, 4.9, 2.2, 3.8])}
-
-    result = calculate([joao, maria, pedro, kaua])
-    best = best_result(result)
-
-    {result, best}
-  end
-
-  defp calculate(students) do
-    students
-    |> Enum.map(&(
-      %{
-        first_name: Student.first_name(&1),
-        last_name: Student.last_name(&1),
-        average: average(&1)
-      }
-    ))
-  end
-
-  defp average(student) do
-    total = Enum.count(student.results)
-
-    result = student.results
-    |> Enum.map(&(&1.result))
-    |> Enum.reduce(&(&1 + &2))
-
-    Float.ceil(result / total, 2)
-  end
-
-  defp best_result(students) do
-    best = students
-    |> Enum.map(&(&1.average))
-    |> Enum.max
-
-    students
-    |> Enum.filter(&(&1.average == best))
-  end
-
-  defp build_subjects(results) do
-    subjects = ["Matemática", "Português", "Geografia", "História"]
-
-    subjects
-    |> Enum.map(&(%Subject{name: &1, result: Enum.random(results)}))
-  end
-end
-```
-
-```elixir
-{result, best} = Calculator.start()
-```
-
-```elixir
-result
-```
-
-```elixir
-best
 ```
