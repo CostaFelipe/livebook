@@ -66,13 +66,14 @@ end
 
 ```elixir
 defmodule TodoList do
+  defstruct [:id, :title]
+  
   def start do
     []
   end
 
   def add_todo(todos, title) do
-    id = :erlang.unique_integer([:positive])
-    new_todo = %Todo{id: id, title: title, }
+    new_todo = %Todo{id: :erlang.unique_integer([:positive]), title: title}
     [new_todo | todos]
   end
 
